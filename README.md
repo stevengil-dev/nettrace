@@ -61,7 +61,7 @@ test/                  node:test suite, fully mocked — no API key or working t
 Requires Node.js 18+ (for built-in `fetch`; developed and tested on Node 22).
 
 ```bash
-git clone <this-repo-url>
+git clone stevengil-dev/nettrace
 cd nettrace
 npm install
 ```
