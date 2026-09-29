@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetTrace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="wordmark">net<span>trace</span></div>
+    <div class="status-pill" id="statusPill">
+      <span class="status-dot"></span> ready
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="panel">
+      <form id="traceForm">
+        <label for="target">Target host or IP</label>
+        <input type="text" id="target" name="target" placeholder="example.com" autocomplete="off">
+
+        <label class="checkbox-row">
+          <input type="checkbox" id="demo" name="demo">
+          Demo mode <span class="hint-inline">(bundled hops, no traceroute needed)</span>
+        </label>
+
+        <button type="submit" class="primary" id="traceBtn">Run trace</button>
+        <p class="hint" id="formHint">Traceroute needs the <code>traceroute</code> (or <code>tracert</code> on Windows) command installed, and usually works without extra permissions. If it's blocked in your environment, use demo mode.</p>
+        <div class="error-banner" id="errorBanner" hidden></div>
+      </form>
+
+      <div id="stats" class="stats" hidden>
+        <div class="stat"><span class="stat-label">Routed distance</span><span class="stat-value mono" id="statRouted">&mdash;</span></div>
+        <div class="stat"><span class="stat-label">Direct distance</span><span class="stat-value mono" id="statDirect">&mdash;</span></div>
+        <div class="stat"><span class="stat-label">Detour ratio</span><span class="stat-value mono" id="statDetour">&mdash;</span></div>
+        <div class="stat"><span class="stat-label">Countries crossed</span><span class="stat-value" id="statCountries">&mdash;</span></div>
+      </div>
+
+      <ol class="hop-list" id="hopList"></ol>
+    </aside>
+
+    <main class="map-wrap">
+      <div id="map"></div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
